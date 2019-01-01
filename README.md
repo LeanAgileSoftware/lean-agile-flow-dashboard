@@ -1,4 +1,4 @@
-# LeanAgileFlowDashboard
+# Lean Agile Flow Dashboard
 [![CircleCI](https://circleci.com/gh/chodges15/LeanAgileFlowDashboard.svg?style=svg)](https://circleci.com/gh/chodges15/LeanAgileFlowDashboard)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.4.
