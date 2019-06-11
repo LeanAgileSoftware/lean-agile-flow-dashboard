@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import * as Interfaces from '../interfaces';
 import { UserSettingsService } from '../user-settings.service';
 import { GithubService } from '../github.service';
-import { zip } from 'rxjs';
+import { zip, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-pull-request-table',
@@ -17,7 +17,7 @@ import { zip } from 'rxjs';
     ])
   ]
 })
-export class PullRequestTableComponent implements OnInit {
+export class PullRequestTableComponent implements OnInit, OnDestroy {
   dataSource = ['temp'];
   columnsToDisplay = ['pull request', 'state', 'organization', 'name'];
   expandedElement: Interfaces.PullRequest | null;
@@ -25,11 +25,13 @@ export class PullRequestTableComponent implements OnInit {
   issues: Interfaces.Issue[];
   currentSelectedIssue: Interfaces.Issue;
   theMap: Map<number, Interfaces.Issue>;
+  userSettingsSubRef: Subscription = null;
 
   constructor(private userSettingsService: UserSettingsService,
               private githubService: GithubService) {
     this.theMap = new Map<number, Interfaces.Issue>();
-               }
+    this.userSettingsSubRef = this.userSettingsService.settingChangedObservable.subscribe(() => this.fetchPullRequests());
+    }
 
 
   private storeResults(results: Interfaces.IssueSearchResult) {
@@ -51,8 +53,12 @@ export class PullRequestTableComponent implements OnInit {
     );
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.fetchPullRequests();
+  }
+
+  ngOnDestroy(): void {
+      this.userSettingsSubRef.unsubscribe();
   }
 
 }

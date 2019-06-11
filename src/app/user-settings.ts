@@ -35,6 +35,7 @@ export class UserSettings implements SessionLoginInformation {
     }
 
     getTokenizedListOfUsers(): string[] {
+        console.log(`List of users` + [this._usersList]);
         return [this._usersList];
     }
 }
