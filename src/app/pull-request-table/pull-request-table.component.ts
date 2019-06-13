@@ -43,13 +43,10 @@ export class PullRequestTableComponent implements OnInit, OnDestroy {
   public fetchPullRequests() {
     const observableArray = this.githubService.getPullRequestsForUsers
       (this.userSettingsService.getUserSettings().getTokenizedListOfUsers());
-    const zippedArray$ = (a$) => zip(...observableArray);
-    const subscribe = zippedArray$(observableArray).subscribe(observables => {
-      observables.forEach(results => {
-        this.storeResults(results);
-      });
-    },
-      err => console.log(`There was an error fetching pull requests: ${err}`)
+    observableArray.map(item => item.subscribe(
+        x => this.storeResults(x),
+        err => console.log(`There was an error fetching pull requests: ${err}`)
+      )
     );
   }
 
