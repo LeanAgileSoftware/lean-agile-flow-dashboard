@@ -18,10 +18,9 @@ import { zip, Subscription } from 'rxjs';
   ]
 })
 export class PullRequestTableComponent implements OnInit, OnDestroy {
-  dataSource = ['temp'];
+  dataSource: Interfaces.Issue[] = [];
   columnsToDisplay = ['pull request', 'state', 'organization', 'name'];
   expandedElement: Interfaces.PullRequest | null;
-  users: string[];
   issues: Interfaces.Issue[];
   currentSelectedIssue: Interfaces.Issue;
   theMap: Map<number, Interfaces.Issue>;
@@ -37,6 +36,7 @@ export class PullRequestTableComponent implements OnInit, OnDestroy {
   private storeResults(results: Interfaces.IssueSearchResult) {
     for (const issue of results.items) {
       this.theMap.set(issue.id, issue);
+      this.dataSource = Array.from(this.theMap.values());
     }
   }
 
