@@ -52,6 +52,7 @@ export interface Issue {
   pull_request: PullRequest;
   body: string;
   score: number;
+  username?: string;
 }
 
 export interface IssueSearchResult {

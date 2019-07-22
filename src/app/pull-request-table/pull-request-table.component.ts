@@ -1,9 +1,15 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import * as Interfaces from '../interfaces';
 import { UserSettingsService } from '../user-settings.service';
 import { GithubService } from '../github.service';
-import { zip, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
+import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+
+interface ColumnData {
+  key: string;
+  name: string;
+}
 
 @Component({
   selector: 'app-pull-request-table',
@@ -17,26 +23,43 @@ import { zip, Subscription } from 'rxjs';
     ])
   ]
 })
-export class PullRequestTableComponent implements OnInit, OnDestroy {
-  dataSource: Interfaces.Issue[] = [];
-  columnsToDisplay = ['pull request', 'state', 'organization', 'name'];
+export class PullRequestTableComponent implements OnInit, OnDestroy, AfterViewInit {
+  dataSource: MatTableDataSource<Interfaces.Issue>;
+  columnData: Map<ColumnData['key'], ColumnData['name']>;
   expandedElement: Interfaces.PullRequest | null;
   issues: Interfaces.Issue[];
   currentSelectedIssue: Interfaces.Issue;
   theMap: Map<number, Interfaces.Issue>;
   userSettingsSubRef: Subscription = null;
+  columnNames: string[];
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
   constructor(private userSettingsService: UserSettingsService,
               private githubService: GithubService) {
     this.theMap = new Map<number, Interfaces.Issue>();
     this.userSettingsSubRef = this.userSettingsService.settingChangedObservable.subscribe(() => this.fetchPullRequests());
-    }
+    this.dataSource = new MatTableDataSource<Interfaces.Issue>();
+  }
 
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim();
+    filterValue = filterValue.toLowerCase();
+    this.dataSource.filter = filterValue;
+  }
 
   private storeResults(results: Interfaces.IssueSearchResult) {
     for (const issue of results.items) {
-      this.theMap.set(issue.id, issue);
-      this.dataSource = Array.from(this.theMap.values());
+      // pull in username at the the top level of the object so we don't have to dig for it later
+      this.theMap.set(issue.id, {...issue, ...{username: issue.user.login}});
+      this.dataSource.data = Array.from(this.theMap.values());
     }
   }
 
@@ -51,6 +74,15 @@ export class PullRequestTableComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    // Setup columns
+    this.columnData = new Map<ColumnData['key'], ColumnData['name']>();
+    this.columnData.set('title', 'Name');
+    this.columnData.set('state', 'Status');
+    this.columnData.set('username', 'User');
+    this.columnData.set('number', 'Number');
+    this.columnData.set('created_at', 'Created');
+    this.columnData.set('updated_at', 'Updated');
+    this.columnNames = Array.from(this.columnData.values());
     this.fetchPullRequests();
   }
 
