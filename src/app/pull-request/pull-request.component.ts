@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { GithubService } from '../github.service';
 import * as Interfaces from '../interfaces';
 
 @Component({
@@ -10,9 +9,9 @@ import * as Interfaces from '../interfaces';
 export class PullRequestComponent implements OnInit {
 
 
+  @Input() issue:  Interfaces.Issue;
 
-
-  constructor(private githubService: GithubService) {
+  constructor() {
   }
 
   ngOnInit() {
