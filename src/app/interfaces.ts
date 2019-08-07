@@ -26,6 +26,17 @@ export interface PullRequest {
   patch_url: string;
 }
 
+export interface PullRequestView {
+  url: string;
+  author: string;
+  org_repo_number: string;
+  created_date: Date;
+  updated_date: Date;
+  status: string;
+  diff_url: string;
+  patch_url: string;
+}
+
 export interface Issue {
   url: string;
   repository_url: string;
@@ -53,6 +64,12 @@ export interface Issue {
   body: string;
   score: number;
   username?: string;
+}
+
+export enum IssueState {
+  OPEN = 'open',
+  CLOSED = 'closed',
+  ALL = 'all'
 }
 
 export interface IssueSearchResult {

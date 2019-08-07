@@ -24,7 +24,7 @@ interface ColumnData {
   ]
 })
 export class PullRequestTableComponent implements OnInit, OnDestroy, AfterViewInit {
-  dataSource: MatTableDataSource<Interfaces.Issue>;
+  dataSource: MatTableDataSource<Interfaces.PullRequestView>;
   columnData: Map<ColumnData['key'], ColumnData['name']>;
   expandedElement: Interfaces.PullRequest | null;
   issues: Interfaces.Issue[];
@@ -40,7 +40,7 @@ export class PullRequestTableComponent implements OnInit, OnDestroy, AfterViewIn
               private githubService: GithubService) {
     this.theMap = new Map<number, Interfaces.Issue>();
     this.userSettingsSubRef = this.userSettingsService.settingChangedObservable.subscribe(() => this.fetchPullRequests());
-    this.dataSource = new MatTableDataSource<Interfaces.Issue>();
+    this.dataSource = new MatTableDataSource<Interfaces.PullRequestView>();
   }
 
 
@@ -55,11 +55,30 @@ export class PullRequestTableComponent implements OnInit, OnDestroy, AfterViewIn
     this.dataSource.filter = filterValue;
   }
 
+  private transformIssueToViewModel(issue: Interfaces.Issue): Interfaces.PullRequestView {
+    const issueIsOpen: string = Interfaces.IssueState[issue.state];
+    const regexp = new RegExp('repos\/(.+)\/(.+)$');
+    const org_repo_split = regexp.exec(issue.repository_url);
+    const organization: string = issue.repository_url;
+    const orgRepoNumber = `${org_repo_split[1]}/${org_repo_split[2]} #${issue.number}`;
+    return {
+      url: issue.html_url,
+      author: issue.user.login,
+      org_repo_number: orgRepoNumber,
+      created_date: new Date(issue.created_at),
+      updated_date: new Date(issue.updated_at),
+      status: issueIsOpen,
+      diff_url: issue.pull_request.diff_url,
+      patch_url: issue.pull_request.patch_url
+    };
+
+  }
+
   private storeResults(results: Interfaces.IssueSearchResult) {
     for (const issue of results.items) {
       // pull in username at the the top level of the object so we don't have to dig for it later
       this.theMap.set(issue.id, {...issue, ...{username: issue.user.login}});
-      this.dataSource.data = Array.from(this.theMap.values());
+      this.dataSource.data = Array.from(this.theMap.values()).map(this.transformIssueToViewModel);
     }
   }
 
@@ -76,12 +95,11 @@ export class PullRequestTableComponent implements OnInit, OnDestroy, AfterViewIn
   ngOnInit(): void {
     // Setup columns
     this.columnData = new Map<ColumnData['key'], ColumnData['name']>();
-    this.columnData.set('title', 'Name');
-    this.columnData.set('state', 'Status');
-    this.columnData.set('username', 'User');
-    this.columnData.set('number', 'Number');
-    this.columnData.set('created_at', 'Created');
-    this.columnData.set('updated_at', 'Updated');
+    this.columnData.set('author', 'Name');
+    this.columnData.set('org_repo_number', 'Pull Request');
+    this.columnData.set('author', 'Name');
+    this.columnData.set('created_date', 'Created');
+    this.columnData.set('updated_date', 'Updated');
     this.columnNames = Array.from(this.columnData.values());
     this.fetchPullRequests();
   }
