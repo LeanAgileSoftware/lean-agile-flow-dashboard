@@ -29,9 +29,7 @@ export interface PullRequest {
 export interface PullRequestView {
   url: string;
   author: string;
-  org: string;
-  repo: string;
-  number: number;
+  org_repo_number: string;
   created_date: Date;
   updated_date: Date;
   status: string;

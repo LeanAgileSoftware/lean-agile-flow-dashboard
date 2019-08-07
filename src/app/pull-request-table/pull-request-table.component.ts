@@ -57,12 +57,14 @@ export class PullRequestTableComponent implements OnInit, OnDestroy, AfterViewIn
 
   private transformIssueToViewModel(issue: Interfaces.Issue): Interfaces.PullRequestView {
     const issueIsOpen: string = Interfaces.IssueState[issue.state];
+    const regexp = new RegExp('repos\/(.+)\/(.+)$');
+    const org_repo_split = regexp.exec(issue.repository_url);
+    const organization: string = issue.repository_url;
+    const orgRepoNumber = `${org_repo_split[1]}/${org_repo_split[2]} #${issue.number}`;
     return {
       url: issue.html_url,
       author: issue.user.login,
-      org: issue.repository_url,
-      repo: issue.repository_url,
-      number: issue.number,
+      org_repo_number: orgRepoNumber,
       created_date: new Date(issue.created_at),
       updated_date: new Date(issue.updated_at),
       status: issueIsOpen,
@@ -94,8 +96,8 @@ export class PullRequestTableComponent implements OnInit, OnDestroy, AfterViewIn
     // Setup columns
     this.columnData = new Map<ColumnData['key'], ColumnData['name']>();
     this.columnData.set('author', 'Name');
-    this.columnData.set('status', 'Status');
-    this.columnData.set('number', 'Number');
+    this.columnData.set('org_repo_number', 'Pull Request');
+    this.columnData.set('author', 'Name');
     this.columnData.set('created_date', 'Created');
     this.columnData.set('updated_date', 'Updated');
     this.columnNames = Array.from(this.columnData.values());
