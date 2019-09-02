@@ -18,8 +18,8 @@ export class UserAuthComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
-    let userSettings = this.settingsService.getUserSettings();
-    if(userSettings.githubApi &&
+    const userSettings = this.settingsService.getUserSettings();
+    if (userSettings.githubApi &&
       userSettings.githubToken &&
       userSettings.usersList) {
           this.router.navigate(['dashboard']);

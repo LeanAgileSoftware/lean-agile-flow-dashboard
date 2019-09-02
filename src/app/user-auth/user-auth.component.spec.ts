@@ -34,7 +34,7 @@ describe('UserAuthComponent', () => {
                  MatCardModule,
                  BrowserAnimationsModule ],
       providers: [ {provide: UserSettingsService, useValue: mockSettingsProvider},
-                   {provide: GithubService, useValue: mockGithubProvider}, 
+                   {provide: GithubService, useValue: mockGithubProvider},
                    {provide: Router, useValue: mockRouter}]
     })
     .compileComponents();
