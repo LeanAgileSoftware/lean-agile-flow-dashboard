@@ -1,41 +1,46 @@
 import { SessionLoginInformation } from './interfaces';
 export class UserSettings implements SessionLoginInformation {
-    private _githubApi: string;
-    private _githubToken: string;
-    private _usersList: string;
+    LOCAL_API = 'coolwipApi';
+    LOCAL_TOKEN = 'coolwipToken';
+    LOCAL_USERS = 'coolwipUsers';
 
-    constructor(githubApi?: string, githubToken?: string, usersList?: string) {
-        this._githubApi = githubApi;
-        this._githubToken = githubToken;
-        this._usersList = usersList;
+    constructor(githubApi?: string, githubToken?: string, githubUsers?: string) {
+        if (githubApi) {
+            localStorage.setItem(this.LOCAL_API, githubApi);
+        }
+        if (githubToken) {
+            localStorage.setItem(this.LOCAL_TOKEN, githubToken);
+        }
+        if (githubUsers) {
+            localStorage.setItem(this.LOCAL_USERS, githubUsers);
+        }
     }
 
     set githubApi(api: string) {
-        this._githubApi = api;
+        localStorage.setItem(this.LOCAL_API, api);
     }
 
     set githubToken(token: string) {
-        this._githubToken = token;
+        localStorage.setItem(this.LOCAL_TOKEN, token);
     }
 
     set usersList(users: string) {
-        this._usersList = users;
+        localStorage.setItem(this.LOCAL_USERS, users);
     }
 
     get githubApi(): string {
-        return this._githubApi;
+        return localStorage.getItem(this.LOCAL_API);
     }
 
     get githubToken(): string {
-        return this._githubToken;
+        return localStorage.getItem(this.LOCAL_TOKEN);
     }
 
     get usersList(): string {
-        return this._usersList;
+        return localStorage.getItem(this.LOCAL_USERS);
     }
 
     getTokenizedListOfUsers(): string[] {
-        console.log(`List of users` + [this._usersList]);
-        return [this._usersList];
+        return this.usersList.split(',');
     }
 }

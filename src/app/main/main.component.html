@@ -1,6 +1,12 @@
 <div class="grid-container">
   <mat-toolbar>
     <span>coolwip 🍨</span>
+    <span class="fill-remaining-space"></span>
+    <span>
+      <button (click)="settingsClick()" mat-mini-fab mat-button color="basic" aria-label="Change settings">
+        <mat-icon>settings</mat-icon>
+      </button>
+    </span>
   </mat-toolbar>
   <router-outlet></router-outlet>
 </div>
