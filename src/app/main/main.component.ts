@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main',
@@ -6,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./main.component.css'],
 })
 export class MainComponent {
-  constructor() { }
+  constructor(private router: Router) { }
+
+  settingsClick() {
+    localStorage.clear();
+    this.router.navigate(['settings']);
+  }
 }
