@@ -11,6 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatStepperModule } from '@angular/material/stepper';
 import { GithubService } from '../github.service';
 import { UserSettings } from '../user-settings';
+import { Router } from '@angular/router';
 
 
 describe('UserAuthComponent', () => {
@@ -23,6 +24,7 @@ describe('UserAuthComponent', () => {
   beforeEach(async(() => {
     const mockSettingsProvider = jasmine.createSpyObj('UserSettingsService', ['setUserSettings', 'getUserSettings']);
     const mockGithubProvider = jasmine.createSpyObj('GithubService', ['verifyConnection', 'getPullRequests']);
+    const mockRouter = jasmine.createSpyObj('Router', ['navigate']);
     TestBed.configureTestingModule({
       declarations: [ UserAuthComponent, UserAuthStepperComponent],
       imports: [ MatStepperModule,
@@ -32,7 +34,8 @@ describe('UserAuthComponent', () => {
                  MatCardModule,
                  BrowserAnimationsModule ],
       providers: [ {provide: UserSettingsService, useValue: mockSettingsProvider},
-                   {provide: GithubService, useValue: mockGithubProvider} ]
+                   {provide: GithubService, useValue: mockGithubProvider}, 
+                   {provide: Router, useValue: mockRouter}]
     })
     .compileComponents();
     const dummySettings: UserSettings = new UserSettings('github.company.com', '123', dummyUsers.toString());
