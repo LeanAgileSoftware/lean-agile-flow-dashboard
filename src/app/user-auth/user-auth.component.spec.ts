@@ -19,7 +19,6 @@ describe('UserAuthComponent', () => {
   let spySettings: jasmine.SpyObj<UserSettingsService>;
   let spyGithub: jasmine.SpyObj<GithubService>;
   const dummyUsers = ['user1', 'user2'];
-  const dummySettings: UserSettings = new UserSettings('github.company.com', '123', dummyUsers.toString());
 
   beforeEach(async(() => {
     const mockSettingsProvider = jasmine.createSpyObj('UserSettingsService', ['setUserSettings', 'getUserSettings']);
@@ -36,6 +35,7 @@ describe('UserAuthComponent', () => {
                    {provide: GithubService, useValue: mockGithubProvider} ]
     })
     .compileComponents();
+    const dummySettings: UserSettings = new UserSettings('github.company.com', '123', dummyUsers.toString());
     mockSettingsProvider.getUserSettings.and.returnValue(dummySettings);
     spySettings = TestBed.get(UserSettingsService);
     spyGithub = TestBed.get(GithubService);

@@ -6,13 +6,13 @@ export class UserSettings implements SessionLoginInformation {
 
     constructor(githubApi?: string, githubToken?: string, githubUsers?: string) {
         if(githubApi) {
-            this.githubApi = githubApi;
+            localStorage.setItem(this.LOCAL_API, githubApi);
         }
         if(githubToken) {
-            this.githubToken = githubToken;
+            localStorage.setItem(this.LOCAL_TOKEN, githubToken);
         }
         if(githubUsers) {
-            this.usersList = githubUsers;
+            localStorage.setItem(this.LOCAL_USERS, githubUsers);
         }
     }
 
