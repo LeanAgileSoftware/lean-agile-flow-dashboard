@@ -54,7 +54,7 @@
     "@types/node": "10.14.17",
     "codecov": "3.5.0",
     "codelyzer": "4.5.0",
-    "commitizen": "3.0.7",
+    "commitizen": "3.1.2",
     "condition-circle": "2.0.2",
     "cz-conventional-changelog": "2.1.0",
     "jasmine-core": "2.99.1",
