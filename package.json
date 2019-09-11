@@ -22,7 +22,7 @@
       "major": {
          "automerge": true
       }
-  }
+  },
   "private": false,
   "dependencies": {
     "@angular/animations": "6.1.10",
