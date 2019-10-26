@@ -1,7 +1,5 @@
 import { TestBed } from '@angular/core/testing';
 import { GithubService } from './github.service';
-import { tokenKey } from '@angular/core/src/view';
-import { stringify } from '@angular/core/src/render3/util';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import * as Interfaces from './interfaces';
