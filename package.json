@@ -30,7 +30,7 @@
     "@angular/common": "8.2.12",
     "@angular/compiler": "8.2.12",
     "@angular/core": "8.2.12",
-    "@angular/flex-layout": "^8.0.0-beta.27",
+    "@angular/flex-layout": "8.0.0-beta.27",
     "@angular/forms": "8.2.12",
     "@angular/material": "8.2.3",
     "@angular/platform-browser": "8.2.12",
@@ -45,11 +45,11 @@
     "rxjs": "6.5.3",
     "semantic-release-cli": "4.1.2",
     "time-ago-pipe": "1.3.2",
-    "tslib": "^1.10.0",
-    "zone.js": "~0.9.1"
+    "tslib": "1.10.0",
+    "zone.js": "0.9.1"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.803.14",
+    "@angular-devkit/build-angular": "0.803.14",
     "@angular/cli": "8.3.14",
     "@angular/compiler-cli": "8.2.12",
     "@angular/language-service": "8.2.12",
@@ -59,7 +59,7 @@
     "@types/json-server": "0.14.1",
     "@types/node": "10.14.17",
     "codecov": "3.5.0",
-    "codelyzer": "^5.0.1",
+    "codelyzer": "5.2.0",
     "commitizen": "4.0.3",
     "condition-circle": "2.0.2",
     "cz-conventional-changelog": "2.1.0",
