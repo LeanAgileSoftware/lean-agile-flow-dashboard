@@ -71,7 +71,7 @@
     "karma-coverage-istanbul-reporter": "2.1.0",
     "karma-jasmine": "1.1.2",
     "karma-jasmine-html-reporter": "0.2.2",
-    "nyc": "13.3.0",
+    "nyc": "14.1.1",
     "protractor": "5.4.2",
     "semantic-release": "15.13.27",
     "ts-node": "7.0.1",
