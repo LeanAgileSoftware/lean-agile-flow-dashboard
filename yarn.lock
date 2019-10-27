@@ -10,7 +10,7 @@
     "@angular-devkit/core" "8.3.14"
     rxjs "6.4.0"
 
-"@angular-devkit/build-angular@~0.803.14":
+"@angular-devkit/build-angular@0.803.14":
   version "0.803.14"
   resolved "https://registry.yarnpkg.com/@angular-devkit/build-angular/-/build-angular-0.803.14.tgz#4c2cfc7266b711485b0f9f91abd61532aa0b71bc"
   integrity sha512-AtrhLDcy5DHi5zWiahEmvbD6THkJkWv27TySTfpZlmMjpRJHNqK7uQiKR1iWSqo4VNpimFle3fwkfjQYHlEKqA==
@@ -190,7 +190,7 @@
   dependencies:
     tslib "^1.9.0"
 
-"@angular/flex-layout@^8.0.0-beta.27":
+"@angular/flex-layout@8.0.0-beta.27":
   version "8.0.0-beta.27"
   resolved "https://registry.yarnpkg.com/@angular/flex-layout/-/flex-layout-8.0.0-beta.27.tgz#a697d5a90e6d04c06b02ee872f88f384d1723f7c"
   integrity sha512-qmpvQPesU4ZQ56IscwgmVRpK2UnyV+gwvXUql7TMv0QV215hLcHczjGsrKkLfW2By5E7XEyDat9br72uVXcPMw==
@@ -3467,7 +3467,7 @@ codecov@3.5.0:
     teeny-request "^3.11.3"
     urlgrey "^0.4.4"
 
-codelyzer@^5.0.1:
+codelyzer@5.2.0:
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/codelyzer/-/codelyzer-5.2.0.tgz#b0ee573a12779c996090e596c5c1755479d83758"
   integrity sha512-izfUfhEOOgAizszPlEDxo71DK/C4wprZw0vkY6UWcOSTQvN1JyfXf9DXwaV7WX+/JC+hH0ShXfdtGLA9Rca7LA==
@@ -11763,7 +11763,7 @@ ts-node@7.0.1:
     source-map-support "^0.5.6"
     yn "^2.0.0"
 
-tslib@1.10.0, tslib@^1.10.0:
+tslib@1.10.0:
   version "1.10.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.10.0.tgz#c3c19f95973fb0a62973fb09d90d961ee43e5c8a"
   integrity sha512-qOebF53frne81cf0S9B41ByenJ3/IuH8yJKngAX35CmiZySA0khhkovshKK+jGCaMnVomla7gVlIcc3EvKPbTQ==
@@ -12678,7 +12678,7 @@ yn@^2.0.0:
   resolved "https://registry.yarnpkg.com/yn/-/yn-2.0.0.tgz#e5adabc8acf408f6385fc76495684c88e6af689a"
   integrity sha1-5a2ryKz0CPY4X8dklWhMiOavaJo=
 
-zone.js@~0.9.1:
+zone.js@0.9.1:
   version "0.9.1"
   resolved "https://registry.yarnpkg.com/zone.js/-/zone.js-0.9.1.tgz#e37c6e5c54c13fae4de26b5ffe8d8e9212da6d9b"
   integrity sha512-GkPiJL8jifSrKReKaTZ5jkhrMEgXbXYC+IPo1iquBjayRa0q86w3Dipjn8b415jpitMExe9lV8iTsv8tk3DGag==
