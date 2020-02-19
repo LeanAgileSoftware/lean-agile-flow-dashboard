@@ -11,16 +11,16 @@ interface ColumnData {
   name: string;
 }
 function statusSubFilter(data: Interfaces.PullRequestView, filter: string): boolean {
-  const regex = /status: \w+/g
-  const matches = filter.match(regex)
-  if(matches) {
-    return data.status == matches[0].split(':')[1].trim().toLowerCase()
+  const regex = /status: \w+/g;
+  const matches = filter.match(regex);
+  if (matches) {
+    return data.status === matches[0].split(':')[1].trim().toLowerCase();
   }
   return true;
 }
 
 function tableFilter(data: Interfaces.PullRequestView, filter: string): boolean {
-  return statusSubFilter(data, filter)
+  return statusSubFilter(data, filter);
 }
 
 
@@ -54,7 +54,7 @@ export class PullRequestTableComponent implements OnInit, OnDestroy, AfterViewIn
     this.theMap = new Map<number, Interfaces.Issue>();
     this.userSettingsSubRef = this.userSettingsService.settingChangedObservable.subscribe(() => this.fetchPullRequests());
     this.dataSource = new MatTableDataSource<Interfaces.PullRequestView>();
-    this.dataSource.filter = "status: closed"
+    this.dataSource.filter = 'status: closed';
     this.dataSource.filterPredicate = tableFilter;
   }
 

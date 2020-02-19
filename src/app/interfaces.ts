@@ -74,7 +74,7 @@ export enum IssueState {
 }
 
 export enum FilterOperators {
-  STATUS = "status"
+  STATUS = 'status'
 }
 
 export interface IssueSearchResult {
