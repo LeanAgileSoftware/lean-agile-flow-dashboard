@@ -13,7 +13,7 @@
     ":prConcurrentLimit25",
     "group:monorepos",
     "group:recommended",
-    "helpers:disableTypesNodeMajor"
+    "helpers:disableTypesNodeMajor",
     ":pinAllExceptPeerDependencies",
     ":automergePr",
     ":automergeRequireAllStatusChecks"
