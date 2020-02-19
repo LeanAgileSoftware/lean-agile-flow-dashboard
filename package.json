@@ -59,7 +59,7 @@
     "@types/json-server": "0.14.2",
     "@types/node": "10.17.0",
     "codecov": "3.5.0",
-    "codelyzer": "5.2.0",
+    "codelyzer": "5.2.1",
     "commitizen": "4.0.3",
     "condition-circle": "2.0.2",
     "cz-conventional-changelog": "3.0.2",
