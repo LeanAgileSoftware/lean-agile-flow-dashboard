@@ -63,7 +63,7 @@
     "commitizen": "4.0.3",
     "condition-circle": "2.0.2",
     "cz-conventional-changelog": "3.1.0",
-    "jasmine-core": "2.99.1",
+    "jasmine-core": "3.5.0",
     "jasmine-spec-reporter": "4.2.1",
     "json-server": "0.16.0",
     "karma": "4.4.1",
