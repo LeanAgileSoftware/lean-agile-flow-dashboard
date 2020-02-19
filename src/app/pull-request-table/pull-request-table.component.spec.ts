@@ -29,11 +29,4 @@ xdescribe('PullRequestTableComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should handle getting fetching one users pull requests', () => {
-    expect(component).toBeTruthy();
-  });
-
-  it('should handle getting multiple users pull requests', () => {
-    expect(component).toBeTruthy();
-  });
 });

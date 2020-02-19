@@ -10,6 +10,19 @@ interface ColumnData {
   key: string;
   name: string;
 }
+function statusSubFilter(data: Interfaces.PullRequestView, filter: string): boolean {
+  const regex = /status: \w+/g
+  const matches = filter.match(regex)
+  if(matches) {
+    return data.status == matches[0].split(':')[1].trim().toLowerCase()
+  }
+  return true;
+}
+
+function tableFilter(data: Interfaces.PullRequestView, filter: string): boolean {
+  return statusSubFilter(data, filter)
+}
+
 
 @Component({
   selector: 'app-pull-request-table',
@@ -41,8 +54,9 @@ export class PullRequestTableComponent implements OnInit, OnDestroy, AfterViewIn
     this.theMap = new Map<number, Interfaces.Issue>();
     this.userSettingsSubRef = this.userSettingsService.settingChangedObservable.subscribe(() => this.fetchPullRequests());
     this.dataSource = new MatTableDataSource<Interfaces.PullRequestView>();
+    this.dataSource.filter = "status: closed"
+    this.dataSource.filterPredicate = tableFilter;
   }
-
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -56,13 +70,14 @@ export class PullRequestTableComponent implements OnInit, OnDestroy, AfterViewIn
   }
 
   private transformIssueToViewModel(issue: Interfaces.Issue): Interfaces.PullRequestView {
-    const issueIsOpen: string = Interfaces.IssueState[issue.state];
+    const issueIsOpen: string = issue.state;
     const regexp = new RegExp('repos\/(.+)\/(.+)$');
     const org_repo_split = regexp.exec(issue.repository_url);
     const organization: string = issue.repository_url;
     const orgRepoNumber = `${org_repo_split[1]}/${org_repo_split[2]} #${issue.number}`;
     return {
       url: issue.html_url,
+      title: issue.title,
       author: issue.user.login,
       org_repo_number: orgRepoNumber,
       created_date: new Date(issue.created_at),
@@ -95,6 +110,7 @@ export class PullRequestTableComponent implements OnInit, OnDestroy, AfterViewIn
   ngOnInit(): void {
     // Setup columns
     this.columnData = new Map<ColumnData['key'], ColumnData['name']>();
+    this.columnData.set('title', 'Title');
     this.columnData.set('author', 'Name');
     this.columnData.set('org_repo_number', 'Pull Request');
     this.columnData.set('author', 'Name');

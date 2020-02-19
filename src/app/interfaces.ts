@@ -28,6 +28,7 @@ export interface PullRequest {
 
 export interface PullRequestView {
   url: string;
+  title: string;
   author: string;
   org_repo_number: string;
   created_date: Date;
@@ -70,6 +71,10 @@ export enum IssueState {
   OPEN = 'open',
   CLOSED = 'closed',
   ALL = 'all'
+}
+
+export enum FilterOperators {
+  STATUS = "status"
 }
 
 export interface IssueSearchResult {
