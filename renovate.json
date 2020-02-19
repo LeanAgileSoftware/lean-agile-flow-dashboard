@@ -9,8 +9,8 @@
     ":ignoreModulesAndTests",
     ":maintainLockFilesDisabled",
     ":autodetectPinVersions",
-    ":prHourlyLimit2",
-    ":prConcurrentLimit20",
+    ":prHourlyLimit10",
+    ":prConcurrentLimit25",
     "group:monorepos",
     "group:recommended",
     "helpers:disableTypesNodeMajor"
