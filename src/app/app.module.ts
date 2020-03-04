@@ -21,7 +21,6 @@ import { PullRequestTableComponent } from './pull-request-table/pull-request-tab
 import { MatTableModule } from '@angular/material/table';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
-import { TimeAgoPipe } from 'time-ago-pipe';
 import { TokenInterceptor } from './http-interceptors/token-interceptor';
 import { BaseUrlInterceptor } from './http-interceptors/base-url-interceptor';
 import { UserAuthComponent } from './user-auth/user-auth.component';
@@ -47,8 +46,7 @@ const appRoutes: Routes = [
     PullRequestTableComponent,
     UserAuthComponent,
     PageNotFoundComponent,
-    UserAuthStepperComponent,
-    TimeAgoPipe
+    UserAuthStepperComponent
   ],
   imports: [
     BrowserModule,

@@ -13,7 +13,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { UserSettingsService } from '../user-settings.service';
 import { GithubService } from '../github.service';
 import { PullRequestTableComponent } from './pull-request-table.component';
-import { TimeAgoPipe } from 'time-ago-pipe';
 
 describe('PullRequestTableComponent', () => {
   let component: PullRequestTableComponent;
@@ -23,7 +22,7 @@ describe('PullRequestTableComponent', () => {
   beforeEach(async(() => {
     const mockGithubProvider = jasmine.createSpyObj('GithubService', ['verifyConnection', 'getPullRequestsForUsers']);
     TestBed.configureTestingModule({
-      declarations: [ PullRequestTableComponent, TimeAgoPipe ],
+      declarations: [ PullRequestTableComponent],
       imports: [MatGridListModule,
                 MatTableModule,
                 MatMenuModule,
