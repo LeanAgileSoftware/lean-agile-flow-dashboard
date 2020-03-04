@@ -16,7 +16,7 @@ import { GithubService } from '../github.service';
 import { PullRequestTableComponent } from './pull-request-table.component';
 import { TimeAgoPipe } from 'time-ago-pipe';
 
-xdescribe('PullRequestTableComponent', () => {
+describe('PullRequestTableComponent', () => {
   let component: PullRequestTableComponent;
   let fixture: ComponentFixture<PullRequestTableComponent>;
   let spyGithub: jasmine.SpyObj<GithubService>;
