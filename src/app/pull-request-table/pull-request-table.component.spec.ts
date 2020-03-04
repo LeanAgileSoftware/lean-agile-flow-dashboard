@@ -1,20 +1,18 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import {MatTableModule} from '@angular/material/table';
-import { MatGridListModule,
-         MatCardModule,
-         MatMenuModule,
-         MatIconModule,
-         MatButtonModule,
-         MatToolbarModule,
-         MatInputModule,
-         MatFormFieldModule,
-         } from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { UserSettingsService } from '../user-settings.service';
 import { GithubService } from '../github.service';
 import { PullRequestTableComponent } from './pull-request-table.component';
-import { TimeAgoPipe } from 'time-ago-pipe';
 
 describe('PullRequestTableComponent', () => {
   let component: PullRequestTableComponent;
@@ -24,7 +22,7 @@ describe('PullRequestTableComponent', () => {
   beforeEach(async(() => {
     const mockGithubProvider = jasmine.createSpyObj('GithubService', ['verifyConnection', 'getPullRequestsForUsers']);
     TestBed.configureTestingModule({
-      declarations: [ PullRequestTableComponent, TimeAgoPipe ],
+      declarations: [ PullRequestTableComponent],
       imports: [MatGridListModule,
                 MatTableModule,
                 MatMenuModule,
