@@ -5,14 +5,12 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { Component } from '@angular/core';
 
-import {
-  MatButtonModule,
-  MatCardModule,
-  MatGridListModule,
-  MatIconModule,
-  MatMenuModule,
-  MatToolbar
-} from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatToolbar } from '@angular/material/toolbar';
 
 import { MainComponent } from './main.component';
 import { APP_BASE_HREF } from '../../../node_modules/@angular/common';

@@ -4,7 +4,9 @@ import * as Interfaces from '../interfaces';
 import { UserSettingsService } from '../user-settings.service';
 import { GithubService } from '../github.service';
 import { Subscription } from 'rxjs';
-import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 
 interface ColumnData {
   key: string;
