@@ -46,8 +46,8 @@ export class PullRequestTableComponent implements OnInit, OnDestroy, AfterViewIn
   userSettingsSubRef: Subscription = null;
   columnNames: string[];
 
-  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
-  @ViewChild(MatSort, { static: false }) sort: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
   constructor(private userSettingsService: UserSettingsService,
               private githubService: GithubService) {
