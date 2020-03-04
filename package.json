@@ -16,6 +16,8 @@
   },
   "release": {
     "verifyConditions": "condition-circle"
+    "branch": "master",
+    "branches": "master"
   },
   "renovate": {
     "automerge": true,
