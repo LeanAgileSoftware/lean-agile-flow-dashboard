@@ -100,7 +100,7 @@ export class PullRequestTableComponent implements OnInit, OnDestroy, AfterViewIn
   public fetchPullRequests() {
     const observableArray = this.githubService.getPullRequestsForUsers
       (this.userSettingsService.getUserSettings().getTokenizedListOfUsers());
-    if(observableArray) {
+    if (observableArray) {
       observableArray.map(item => item.subscribe(
           x => this.storeResults(x),
           err => console.log(`There was an error fetching pull requests: ${err}`)
