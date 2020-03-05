@@ -54,11 +54,11 @@ describe('PullRequestTableComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  fit('should process pull requests', () => {
+  it('should process pull requests', () => {
     userSettingsSpy.getUserSettings.and.returnValue(mockSettings);
-    githubServiceSpy.getPullRequestsForUsers.and.returnValue(of(MockData.ISSUE_SEARCH));
+    githubServiceSpy.getPullRequestsForUsers.and.returnValue([of(MockData.ISSUE_SEARCH), of(MockData.ISSUE_SEARCH)]);
     fixture.detectChanges();
-    expect(githubServiceSpy.getPullRequests).toHaveBeenCalledTimes(2);
+    expect(githubServiceSpy.getPullRequestsForUsers).toHaveBeenCalled();
   });
 
 });
