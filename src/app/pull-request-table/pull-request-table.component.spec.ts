@@ -22,7 +22,7 @@ describe('PullRequestTableComponent', () => {
   let githubServiceSpy: jasmine.SpyObj<GithubService>;
   let userSettingsSpy: jasmine.SpyObj<UserSettingsService>;
 
-  let mockSettings = new UserSettings('fake.github.com', 'abcdefg', 'user1, user2')
+  const mockSettings = new UserSettings('fake.github.com', 'abcdefg', 'user1, user2');
 
   beforeEach(async(() => {
     const mockGithubProvider = jasmine.createSpyObj('GithubService', ['verifyConnection', 'getPullRequestsForUsers']);
@@ -38,7 +38,9 @@ describe('PullRequestTableComponent', () => {
                 MatToolbarModule,
                 MatInputModule,
                 BrowserAnimationsModule],
-      providers: [UserSettingsService, {provide: GithubService, useValue: mockGithubProvider}, {provide: UserSettingsService, useValue: mockUserSettings}]
+      providers: [UserSettingsService,
+                  {provide: GithubService, useValue: mockGithubProvider},
+                  {provide: UserSettingsService, useValue: mockUserSettings}]
     })
     .compileComponents();
     githubServiceSpy = TestBed.get(GithubService);
