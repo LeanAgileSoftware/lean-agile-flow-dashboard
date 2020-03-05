@@ -54,7 +54,6 @@ export class PullRequestTableComponent implements OnInit, OnDestroy, AfterViewIn
   constructor(private userSettingsService: UserSettingsService,
               private githubService: GithubService) {
     this.theMap = new Map<number, Interfaces.Issue>();
-    this.userSettingsSubRef = this.userSettingsService.settingChangedObservable.subscribe(() => this.fetchPullRequests());
     this.dataSource = new MatTableDataSource<Interfaces.PullRequestView>();
     this.dataSource.filter = 'status: closed';
     this.dataSource.filterPredicate = tableFilter;
