@@ -16,7 +16,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatStepperModule } from '@angular/material/stepper';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LayoutModule } from '@angular/cdk/layout';
-import { PullRequestComponent } from './pull-request/pull-request.component';
 import { PullRequestTableComponent } from './pull-request-table/pull-request-table.component';
 import { MatTableModule } from '@angular/material/table';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -43,7 +42,6 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     MainComponent,
-    PullRequestComponent,
     PullRequestTableComponent,
     UserAuthComponent,
     PageNotFoundComponent,
