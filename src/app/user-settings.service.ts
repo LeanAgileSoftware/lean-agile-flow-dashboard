@@ -7,8 +7,8 @@ import { Subject, Observable } from 'rxjs';
 })
 export class UserSettingsService {
   private settings: UserSettings;
-  private settingChangedSource = new Subject<void>();
-  public settingChangedObservable = this.settingChangedSource.asObservable();
+  private settingChangedSource = new Subject<UserSettings>();
+  private settingChangedObservable = this.settingChangedSource.asObservable();
   constructor() {
     this.settings = new UserSettings();
   }
@@ -18,5 +18,8 @@ export class UserSettingsService {
   }
   getUserSettings(): UserSettings {
     return this.settings;
+  }
+  getObservable(): Observable<UserSettings> {
+    return this.settingChangedObservable;
   }
 }
