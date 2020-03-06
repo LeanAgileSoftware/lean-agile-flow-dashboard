@@ -40,7 +40,7 @@ describe(`TokenInterceptor`, () => {
   });
 
   it('should add an Authorization header', () => {
-    const testData: Interfaces.IssueSearchResult = MockData.ISSUE_SEARCH;
+    const testData: Interfaces.IssueSearchResult = MockData.ISSUE_SEARCH1;
     const mockUserSettings: UserSettings = new UserSettings('blah', 'test', 'a,b,c');
     settingsServiceSpy.getUserSettings.and.returnValue(mockUserSettings);
     service.getPullRequests('test').subscribe(

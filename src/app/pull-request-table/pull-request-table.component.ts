@@ -124,7 +124,6 @@ export class PullRequestTableComponent implements OnInit, OnDestroy, AfterViewIn
   }
 
   ngOnDestroy(): void {
-      this.userSettingsSubRef.unsubscribe();
   }
 
 }

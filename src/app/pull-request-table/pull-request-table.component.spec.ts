@@ -14,6 +14,7 @@ import { PullRequestTableComponent } from './pull-request-table.component';
 import { UserSettings } from '../user-settings';
 import { of, Observable } from 'rxjs';
 import * as MockData from '../mock-github-service-data';
+import { DateAgoPipe } from '../pipes/date-ago.pipe';
 
 
 describe('PullRequestTableComponent', () => {
@@ -28,7 +29,7 @@ describe('PullRequestTableComponent', () => {
     const mockGithubProvider = jasmine.createSpyObj('GithubService', ['verifyConnection', 'getPullRequestsForUsers']);
     const mockUserSettings = jasmine.createSpyObj('UserSettingsService', ['getObservable', 'getUserSettings']);
     TestBed.configureTestingModule({
-      declarations: [ PullRequestTableComponent],
+      declarations: [ PullRequestTableComponent, DateAgoPipe ],
       imports: [MatGridListModule,
                 MatTableModule,
                 MatMenuModule,
@@ -58,9 +59,10 @@ describe('PullRequestTableComponent', () => {
 
   it('should process pull requests', () => {
     userSettingsSpy.getUserSettings.and.returnValue(mockSettings);
-    githubServiceSpy.getPullRequestsForUsers.and.returnValue([of(MockData.ISSUE_SEARCH), of(MockData.ISSUE_SEARCH)]);
+    githubServiceSpy.getPullRequestsForUsers.and.returnValue([of(MockData.ISSUE_SEARCH1), of(MockData.ISSUE_SEARCH2)]);
     fixture.detectChanges();
     expect(githubServiceSpy.getPullRequestsForUsers).toHaveBeenCalled();
+    expect(component.theMap.size).toBe(25);
   });
 
 });

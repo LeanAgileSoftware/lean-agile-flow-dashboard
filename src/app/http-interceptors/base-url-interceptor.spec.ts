@@ -42,7 +42,7 @@ describe(`BaseUrlInterceptor`, () => {
 
   it('should add the base URL', () => {
     const testUrl = 'http://testUrl';
-    const testData: Interfaces.IssueSearchResult = MockData.ISSUE_SEARCH;
+    const testData: Interfaces.IssueSearchResult = MockData.ISSUE_SEARCH1;
     const mockUserSettings: UserSettings = new UserSettings(testUrl, 'test', 'a,b,c');
     settingsServiceSpy.getUserSettings.and.returnValue(mockUserSettings);
     localStorage.setItem('baseUrl', testUrl);
