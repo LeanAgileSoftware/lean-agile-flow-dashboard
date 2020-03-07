@@ -28,7 +28,7 @@ function tableFilter(data: Interfaces.PullRequestView, filter: string): boolean 
 
 
 @Component({
-  selector: 'app-pull-request-table',
+  selector: 'pull-request-table',
   templateUrl: './pull-request-table.component.html',
   styleUrls: ['./pull-request-table.component.css'],
   animations: [
