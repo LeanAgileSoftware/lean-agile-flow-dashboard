@@ -15,7 +15,7 @@ import { UserSettings } from '../user-settings';
 import { of, Observable } from 'rxjs';
 import * as MockData from '../mock-github-service-data';
 import { DateAgoPipe } from '../pipes/date-ago.pipe';
-import { PullRequestTableFilter } from './pull-request-table-filter.interface'
+import { PullRequestTableFilter } from './pull-request-table-filter.interface';
 
 
 describe('PullRequestTableComponent', () => {

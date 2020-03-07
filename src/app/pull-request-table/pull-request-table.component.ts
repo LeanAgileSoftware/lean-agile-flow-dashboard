@@ -7,7 +7,7 @@ import { Subscription } from 'rxjs';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { PullRequestTableFilter } from './pull-request-table-filter.interface'
+import { PullRequestTableFilter } from './pull-request-table-filter.interface';
 
 interface ColumnData {
   key: string;
