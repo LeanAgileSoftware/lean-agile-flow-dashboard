@@ -1627,7 +1627,7 @@ export const ISSUE_SEARCH2 = {
                     'description': null
                 }
             ],
-            'state': 'closed',
+            'state': 'open',
             'locked': false,
             'assignee': null,
             'assignees': [

@@ -73,7 +73,7 @@ export enum IssueState {
   ALL = 'all'
 }
 
-export enum FilterOperators {
+export enum FilterOperator {
   STATUS = 'status'
 }
 
@@ -87,4 +87,10 @@ export interface SessionLoginInformation {
   githubApi: string;
   githubToken: string;
   usersList: string;
+}
+
+export interface TableFilter {
+  type: FilterOperator;
+  value: string;
+  name: string;
 }
