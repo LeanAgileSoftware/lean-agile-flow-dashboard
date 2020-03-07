@@ -15,6 +15,7 @@ import { UserSettings } from '../user-settings';
 import { of, Observable } from 'rxjs';
 import * as MockData from '../mock-github-service-data';
 import { DateAgoPipe } from '../pipes/date-ago.pipe';
+import { PullRequestTableFilter } from './pull-request-table-filter.interface'
 
 
 describe('PullRequestTableComponent', () => {
@@ -51,18 +52,32 @@ describe('PullRequestTableComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(PullRequestTableComponent);
     component = fixture.componentInstance;
+    userSettingsSpy.getUserSettings.and.returnValue(mockSettings);
+    githubServiceSpy.getPullRequestsForUsers.and.returnValue([of(MockData.ISSUE_SEARCH1), of(MockData.ISSUE_SEARCH2)]);
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should process pull requests', () => {
-    userSettingsSpy.getUserSettings.and.returnValue(mockSettings);
-    githubServiceSpy.getPullRequestsForUsers.and.returnValue([of(MockData.ISSUE_SEARCH1), of(MockData.ISSUE_SEARCH2)]);
+  it('should process pull requests with no filters', () => {
     fixture.detectChanges();
     expect(githubServiceSpy.getPullRequestsForUsers).toHaveBeenCalled();
     expect(component.theMap.size).toBe(25);
+  });
+
+  it('should filter for open pull requests', () => {
+    component.applyFilter(PullRequestTableFilter.statusOpenFilter);
+    fixture.detectChanges();
+    expect(githubServiceSpy.getPullRequestsForUsers).toHaveBeenCalled();
+    expect(component.dataSource.filteredData.length).toBe(1);
+  });
+
+  fit('should filter for closed pull requests', () => {
+    component.applyFilter(PullRequestTableFilter.statusClosedFilter);
+    fixture.detectChanges();
+    expect(githubServiceSpy.getPullRequestsForUsers).toHaveBeenCalled();
+    expect(component.dataSource.filteredData.length).toBe(24);
   });
 
 });

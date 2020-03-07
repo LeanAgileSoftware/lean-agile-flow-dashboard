@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit, Input } from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import * as Interfaces from '../interfaces';
 import { UserSettingsService } from '../user-settings.service';
@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { PullRequestTableFilter } from './pull-request-table-filter.interface'
 
 interface ColumnData {
   key: string;
@@ -48,6 +49,8 @@ export class PullRequestTableComponent implements OnInit, OnDestroy, AfterViewIn
   userSettingsSubRef: Subscription = null;
   columnNames: string[];
 
+  @Input() public filter: PullRequestTableFilter;
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -55,7 +58,7 @@ export class PullRequestTableComponent implements OnInit, OnDestroy, AfterViewIn
               private githubService: GithubService) {
     this.theMap = new Map<number, Interfaces.Issue>();
     this.dataSource = new MatTableDataSource<Interfaces.PullRequestView>();
-    this.dataSource.filter = 'status: closed';
+    this.dataSource.filter = this.filter ? this.filter.value : null;
     this.dataSource.filterPredicate = tableFilter;
   }
 
@@ -64,10 +67,8 @@ export class PullRequestTableComponent implements OnInit, OnDestroy, AfterViewIn
     this.dataSource.sort = this.sort;
   }
 
-  applyFilter(filterValue: string) {
-    filterValue = filterValue.trim();
-    filterValue = filterValue.toLowerCase();
-    this.dataSource.filter = filterValue;
+  applyFilter(filter: PullRequestTableFilter) {
+    this.dataSource.filter = filter.value.trim().toLowerCase();
   }
 
   private transformIssueToViewModel(issue: Interfaces.Issue): Interfaces.PullRequestView {
