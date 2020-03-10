@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { UserSettings } from './user-settings';
 import { Subject, Observable } from 'rxjs';
+import { SessionLoginInformation } from './interfaces';
 
 @Injectable({
   providedIn: 'root'

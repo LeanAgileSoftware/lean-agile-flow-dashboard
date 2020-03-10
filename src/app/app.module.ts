@@ -28,9 +28,10 @@ import { UserAuthStepperComponent } from './user-auth-stepper/user-auth-stepper.
 import { GithubService } from './github.service';
 import { UserSettingsService } from './user-settings.service';
 import { DateAgoPipe } from './pipes/date-ago.pipe';
+import { MainContentComponent } from './main-content/main-content.component';
 
 const appRoutes: Routes = [
-  { path: 'dashboard', component: PullRequestTableComponent},
+  { path: 'dashboard', component: MainContentComponent},
   { path: 'settings', component: UserAuthComponent},
   { path: '',
     redirectTo: '/settings',
@@ -46,7 +47,8 @@ const appRoutes: Routes = [
     UserAuthComponent,
     PageNotFoundComponent,
     UserAuthStepperComponent,
-    DateAgoPipe
+    DateAgoPipe,
+    MainContentComponent
   ],
   imports: [
     BrowserModule,

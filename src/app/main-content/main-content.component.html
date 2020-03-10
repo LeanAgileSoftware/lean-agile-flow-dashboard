@@ -1,0 +1,7 @@
+<mat-grid-list cols="2" rowHeight="350px">
+    <div *ngFor="let currentFilter of filterList">
+        <mat-grid-tile [colspan]="2" [rowspan]="2">
+            <app-pull-request-table [filter]=currentFilter></app-pull-request-table>
+        </mat-grid-tile>
+    </div>
+</mat-grid-list>

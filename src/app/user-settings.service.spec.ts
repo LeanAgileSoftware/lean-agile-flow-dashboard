@@ -10,7 +10,7 @@ describe('UserSettingsService', () => {
   const testSettings: UserSettings = new UserSettings('test.github.com', 'abcd', 'bob, charlie');
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.get(UserSettingsService);
+    service = TestBed.inject(UserSettingsService);
   });
 
   it('should be created', () => {

@@ -17,7 +17,7 @@ describe('UserAuthStepperComponent', () => {
   let spySettings: jasmine.SpyObj<UserSettingsService>;
 
   beforeEach(async(() => {
-    const mockSettingsProvider = jasmine.createSpyObj('UserSettingsService', ['setUserSettings']);
+    spySettings = jasmine.createSpyObj('UserSettingsService', ['setUserSettings']);
     TestBed.configureTestingModule({
       imports: [ MatStepperModule,
                  ReactiveFormsModule,
@@ -26,7 +26,7 @@ describe('UserAuthStepperComponent', () => {
                  MatCardModule,
                  BrowserAnimationsModule ],
       declarations: [ UserAuthStepperComponent ],
-      providers: [ {provide: UserSettingsService, useValue: mockSettingsProvider} ]
+      providers: [ {provide: UserSettingsService, useValue: spySettings} ]
     })
     .compileComponents();
   }));
@@ -34,7 +34,6 @@ describe('UserAuthStepperComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(UserAuthStepperComponent);
     component = fixture.componentInstance;
-    spySettings = TestBed.get(UserSettingsService);
     fixture.detectChanges();
   });
 

@@ -21,9 +21,9 @@ describe('GithubService', () => {
         GithubService,
       ]
     });
-    githubService = TestBed.get(GithubService);
-    httpClient = TestBed.get(HttpClient);
-    httpTestingController = TestBed.get(HttpTestingController);
+    githubService = TestBed.inject(GithubService);
+    httpClient = TestBed.inject(HttpClient);
+    httpTestingController = TestBed.inject(HttpTestingController);
   });
 
   afterEach(() => {
@@ -37,7 +37,7 @@ describe('GithubService', () => {
   describe('getPullRequests()', () => {
 
     it('should return an Observable<IssueSearchResult>', () => {
-      const service: GithubService = TestBed.get(GithubService);
+      const service: GithubService = TestBed.inject(GithubService);
       service.getPullRequests('test').subscribe(
         data => expect(data).toBeTruthy(),
         error => fail('Expected valid data, but got an error' + error.message)
@@ -47,7 +47,7 @@ describe('GithubService', () => {
       req.flush({});
     });
     it('should retrieve a valid search result with multiple results', () => {
-      const service: GithubService = TestBed.get(GithubService);
+      const service: GithubService = TestBed.inject(GithubService);
       service.getPullRequests('test').subscribe(
         data => {
           expect(data).toBeTruthy();

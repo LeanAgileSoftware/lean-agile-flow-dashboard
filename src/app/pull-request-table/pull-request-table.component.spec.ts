@@ -27,8 +27,8 @@ describe('PullRequestTableComponent', () => {
   const mockSettings = new UserSettings('fake.github.com', 'abcdefg', 'user1, user2');
 
   beforeEach(async(() => {
-    const mockGithubProvider = jasmine.createSpyObj('GithubService', ['verifyConnection', 'getPullRequestsForUsers']);
-    const mockUserSettings = jasmine.createSpyObj('UserSettingsService', ['getObservable', 'getUserSettings']);
+    githubServiceSpy = jasmine.createSpyObj('GithubService', ['verifyConnection', 'getPullRequestsForUsers']);
+    userSettingsSpy = jasmine.createSpyObj('UserSettingsService', ['getObservable', 'getUserSettings']);
     TestBed.configureTestingModule({
       declarations: [ PullRequestTableComponent, DateAgoPipe ],
       imports: [MatGridListModule,
@@ -41,12 +41,10 @@ describe('PullRequestTableComponent', () => {
                 MatInputModule,
                 BrowserAnimationsModule],
       providers: [UserSettingsService,
-                  {provide: GithubService, useValue: mockGithubProvider},
-                  {provide: UserSettingsService, useValue: mockUserSettings}]
+                  {provide: GithubService, useValue: githubServiceSpy},
+                  {provide: UserSettingsService, useValue: userSettingsSpy}]
     })
     .compileComponents();
-    githubServiceSpy = TestBed.get(GithubService);
-    userSettingsSpy = TestBed.get(UserSettingsService);
   }));
 
   beforeEach(() => {
@@ -54,6 +52,7 @@ describe('PullRequestTableComponent', () => {
     component = fixture.componentInstance;
     userSettingsSpy.getUserSettings.and.returnValue(mockSettings);
     githubServiceSpy.getPullRequestsForUsers.and.returnValue([of(MockData.ISSUE_SEARCH1), of(MockData.ISSUE_SEARCH2)]);
+    fixture.detectChanges();
   });
 
   it('should create', () => {
@@ -61,21 +60,18 @@ describe('PullRequestTableComponent', () => {
   });
 
   it('should process pull requests with no filters', () => {
-    fixture.detectChanges();
     expect(githubServiceSpy.getPullRequestsForUsers).toHaveBeenCalled();
     expect(component.theMap.size).toBe(25);
   });
 
   it('should filter for open pull requests', () => {
     component.applyFilter(PullRequestTableFilter.statusOpenFilter);
-    fixture.detectChanges();
     expect(githubServiceSpy.getPullRequestsForUsers).toHaveBeenCalled();
     expect(component.dataSource.filteredData.length).toBe(1);
   });
 
-  fit('should filter for closed pull requests', () => {
+  it('should filter for closed pull requests', () => {
     component.applyFilter(PullRequestTableFilter.statusClosedFilter);
-    fixture.detectChanges();
     expect(githubServiceSpy.getPullRequestsForUsers).toHaveBeenCalled();
     expect(component.dataSource.filteredData.length).toBe(24);
   });
