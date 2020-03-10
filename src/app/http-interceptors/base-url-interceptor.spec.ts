@@ -18,7 +18,7 @@ describe(`BaseUrlInterceptor`, () => {
 
 
   beforeEach(() => {
-    const spy = jasmine.createSpyObj('UserSettingsService', ['getUserSettings']);
+    settingsServiceSpy = jasmine.createSpyObj('UserSettingsService', ['getUserSettings']);
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
       providers: [
@@ -30,14 +30,13 @@ describe(`BaseUrlInterceptor`, () => {
         },
         {
           provide: UserSettingsService,
-          useValue: spy
+          useValue: settingsServiceSpy
         }
       ],
     });
 
-    service = TestBed.get(GithubService);
-    httpMock = TestBed.get(HttpTestingController);
-    settingsServiceSpy = TestBed.get(UserSettingsService);
+    service = TestBed.inject(GithubService);
+    httpMock = TestBed.inject(HttpTestingController);
   });
 
   it('should add the base URL', () => {

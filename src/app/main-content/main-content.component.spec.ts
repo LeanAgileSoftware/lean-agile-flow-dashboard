@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MainContentComponent } from './main-content.component';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('MainContentComponent', () => {
   let component: MainContentComponent;
@@ -8,7 +9,8 @@ describe('MainContentComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MainContentComponent ]
+      declarations: [ MainContentComponent ],
+      schemas: [ NO_ERRORS_SCHEMA ]
     })
     .compileComponents();
   }));
@@ -21,5 +23,9 @@ describe('MainContentComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should have a non-zero size filter list', () => {
+    expect(component.filterList.length).toBeGreaterThan(0);
   });
 });

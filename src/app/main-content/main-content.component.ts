@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
+import { PullRequestTableFilter } from '../pull-request-table/pull-request-table-filter.interface';
+import { FilterOperator } from '../interfaces';
 
 @Component({
   selector: 'app-main-content',
@@ -7,7 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainContentComponent implements OnInit {
 
-  constructor() { }
+  @Output()
+  public filterList: PullRequestTableFilter[];
+
+  constructor() {
+    this.filterList = new Array<PullRequestTableFilter>();
+    this.filterList.push(new PullRequestTableFilter(FilterOperator.STATUS, 'status: open', 'Open Pull Requests'));
+  }
 
   ngOnInit(): void {
   }

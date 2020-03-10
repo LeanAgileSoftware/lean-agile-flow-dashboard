@@ -28,7 +28,7 @@ function tableFilter(data: Interfaces.PullRequestView, filter: string): boolean 
 
 
 @Component({
-  selector: 'pull-request-table',
+  selector: 'app-pull-request-table',
   templateUrl: './pull-request-table.component.html',
   styleUrls: ['./pull-request-table.component.css'],
   animations: [
@@ -58,13 +58,13 @@ export class PullRequestTableComponent implements OnInit, OnDestroy, AfterViewIn
               private githubService: GithubService) {
     this.theMap = new Map<number, Interfaces.Issue>();
     this.dataSource = new MatTableDataSource<Interfaces.PullRequestView>();
-    this.dataSource.filter = this.filter ? this.filter.value : null;
     this.dataSource.filterPredicate = tableFilter;
   }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+    this.dataSource.filter = this.filter ? this.filter.value : null;
   }
 
   applyFilter(filter: PullRequestTableFilter) {
