@@ -55,7 +55,7 @@
     "@angular/language-service": "9.0.5",
     "@types/jasmine": "3.5.8",
     "@types/jasminewd2": "2.0.8",
-    "@types/jquery": "3.3.33",
+    "@types/jquery": "3.5.5",
     "@types/json-server": "0.14.2",
     "@types/node": "12.12.29",
     "codecov": "3.6.5",
